@@ -1,0 +1,1 @@
+# api_coingecko_corte_3
