@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main id="app"></main> 
+    <button onclick="filtro('')">grafico</button>
+    
+
+
+    <script>
+        async function conexionLista() {
+            const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1');
+            const data = await res.json();
+    
+            let contenido = "";
+    
+            for (let i = 0; i < data.length; i++) {
+                // Mostrar en consola los datos relevantes
+                console.log(`ID: ${data[i].id}`);
+                console.log(`Símbolo: ${data[i].symbol}`);
+                console.log(`Precio: $${data[i].current_price}`);
+    
+                // Mostrar en el HTML los datos de ID, símbolo y precio
+                contenido += `<p>ID: ${data[i].id} | Símbolo: ${data[i].symbol} | Precio: $${data[i].current_price}</p>`;
+            }
+    
+            // Insertar todo el contenido generado dentro del div con id="app"
+            document.getElementById("app").innerHTML = contenido;
+        }
+    
+        conexionLista();  // Ejecutar la función para obtener los datos
+    </script>
+    
+    
+
+}
+
+
+       
+   </script>
+</body>
+</html>
+
